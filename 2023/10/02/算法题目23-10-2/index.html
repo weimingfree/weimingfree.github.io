@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Category: 心情 | experience sharing</title>
+  <title>算法题目23.10.2 | experience sharing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="experience sharing">
-<meta property="og:url" content="http://example.com/categories/%E5%BF%83%E6%83%85/index.html">
+  <meta name="description" content="有一些比较难的模拟题目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法题目23.10.2">
+<meta property="og:url" content="http://example.com/2023/10/02/%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE23-10-2/index.html">
 <meta property="og:site_name" content="experience sharing">
+<meta property="og:description" content="有一些比较难的模拟题目">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-02T13:03:29.000Z">
+<meta property="article:modified_time" content="2023-10-02T14:45:50.443Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="算法练习">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="experience sharing" type="application/atom+xml">
@@ -75,58 +80,77 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/09/30/%E5%85%B3%E4%BA%8E%E8%AF%BB%E7%A0%94/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-09-30T12:51:47.000Z" itemprop="datePublished">Sep 30</time>
+        <section id="main"><article id="post-算法题目23-10-2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/02/%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE23-10-2/" class="article-date">
+  <time class="dt-published" datetime="2023-10-02T13:03:29.000Z" itemprop="datePublished">2023-10-02</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/09/30/%E5%85%B3%E4%BA%8E%E8%AF%BB%E7%A0%94/">关于读研</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      算法题目23.10.2
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/09/30/%E5%9B%B0%E6%83%91%E4%B8%8E%E5%88%86%E6%9E%90/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-09-30T03:52:10.000Z" itemprop="datePublished">Sep 30</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/09/30/%E5%9B%B0%E6%83%91%E4%B8%8E%E5%88%86%E6%9E%90/">困惑与分析</a>
-    </h1>
-  
+        <p>有一些比较难的模拟题目</p>
+<span id="more"></span>
 
-    </header>
+<h3 id="1-Flooded"><a href="#1-Flooded" class="headerlink" title="1.Flooded!"></a>1.Flooded!</h3><p>题目链接：<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-815">Flooded! - UVA 815 - Virtual Judge (vjudge.net)</a></p>
+<p>题目大意：n个楼房（高度未必相同）簇集为一块大的正方形区域，正方形区域的四周围了无限高度的围墙。当一定量体积的雨水倾注时，高度低楼房会被淹没，高度高楼房不会被淹没，询问被淹没的区域的占比，以及水面的高度。</p>
+<p>解法：</p>
+<p>不妨将楼房按高度高低排成一排，假设低的在前面，高的在后面，那么我们就可以从前往后考虑。</p>
+<p>简化的方法：每个楼房的所占面积都相等，我们让每个楼房的面积都变成1，那么雨水的体积也可以除以相应的大小。</p>
+<p>我们要明确最终水面的高度其实是水的体积加上被淹楼房的体积&#x2F;底面积得来，因此在判断一个楼房会不会被淹没时，用其前面所有楼房的体积+水的体积&#x2F;底面积然后和楼房高度比较即可，直到水的高度小于楼房的高度</p>
+<p>注意：</p>
+<p>1.可以加上一个无穷高的楼房，这样的话当最高的楼房被淹没时，最高楼也可以和无穷高楼进行比较</p>
+<p>2.问题：当雨水为0时，水面的高度和最低高楼房的高度是相同的，但最低楼算是被淹没了吗？没有考虑这个情况也可以过</p>
+<h3 id="2-Alignment-of-Code"><a href="#2-Alignment-of-Code" class="headerlink" title="2.Alignment of Code"></a>2.Alignment of Code</h3><p>题目链接：<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1593">Alignment of Code - UVA 1593 - Virtual Judge (vjudge.net)</a></p>
+<p>题目大意：对一个</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/10/02/%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE23-10-2/" data-id="clnbokims000d50jd3sm1h8h6" data-title="算法题目23.10.2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" rel="tag">算法练习</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/03/23-10-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          23.10.3-10.4
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/30/%E5%85%B3%E4%BA%8E%E8%AF%BB%E7%A0%94/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于读研</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

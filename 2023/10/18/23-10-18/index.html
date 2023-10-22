@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>23.10.18 | experience sharing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="高效算法设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23.10.18">
+<meta property="og:url" content="http://example.com/2023/10/18/23-10-18/index.html">
+<meta property="og:site_name" content="experience sharing">
+<meta property="og:description" content="高效算法设计">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-18T02:51:14.000Z">
+<meta property="article:modified_time" content="2023-10-19T12:00:36.526Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="高效算法设计">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="experience sharing" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">experience sharing</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">xu jian</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-23-10-18" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/18/23-10-18/" class="article-date">
+  <time class="dt-published" datetime="2023-10-18T02:51:14.000Z" itemprop="datePublished">2023-10-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      23.10.18
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="高效算法设计"><a href="#高效算法设计" class="headerlink" title="高效算法设计"></a>高效算法设计</h1><span id="more"></span>
+
+<h3 id="1-Erasing-and-Winning"><a href="#1-Erasing-and-Winning" class="headerlink" title="1.Erasing and Winning"></a>1.Erasing and Winning</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-11491">Erasing and Winning - UVA 11491 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> N)</span></span>&#123;</span><br><span class="line">    _for(d,<span class="number">0</span>,<span class="number">10</span>)&#123;</span><br><span class="line">        <span class="type">int</span> pos = N;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = N <span class="number">-1</span>;j &gt;= <span class="number">0</span>;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(NUM[j] == d)pos = j;</span><br><span class="line">            NEXT[j][d] == pos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">select_max</span><span class="params">(<span class="type">int</span> start,<span class="type">int</span> end,<span class="type">int</span>&amp; pos)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> d = <span class="number">9</span>;d &gt;= <span class="number">0</span>;d--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(NEXT[start][d] &lt; end)&#123;</span><br><span class="line">            pos = NEXT[start][d];</span><br><span class="line">            <span class="keyword">return</span> d;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> N,<span class="type">int</span> E)</span></span>&#123;</span><br><span class="line">    <span class="built_in">init</span>(N);</span><br><span class="line">    string ans;</span><br><span class="line">    <span class="type">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(E--)&#123;</span><br><span class="line">        <span class="type">int</span> pos;</span><br><span class="line">        ans += <span class="built_in">select_max</span>(start,N-E,pos) + <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        start = pos + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    output&lt;&lt;ans&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>N个数字里面挑选E个数字的使得最后的结果是最大的整数</li>
+<li>挑选时要使得剩下的E-1个数有地方挑，所以挑选的区间要加以限制，挑完这一个数字下一个数字从这一个位置的下一个位置开始</li>
+<li>NEXT数组表示什么？在区间[j,end]中，数字d的下一个位置的ix是多少？高效很多</li>
+</ul>
+<h3 id="2-Paper-Folding"><a href="#2-Paper-Folding" class="headerlink" title="2.Paper Folding"></a>2.Paper Folding</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-177">Paper Folding - UVA 177 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span>&#123;</span><br><span class="line">	<span class="type">int</span> x,y;</span><br><span class="line">	<span class="built_in">Point</span>(<span class="type">int</span> x = <span class="number">0</span>,<span class="type">int</span> y = <span class="number">0</span>):<span class="built_in">x</span>(x),<span class="built_in">y</span>(y)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">Point <span class="keyword">operator</span>+(<span class="type">const</span> Point&amp; A,<span class="type">const</span> Point&amp; B)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Point</span>(A.x+B.x,A.y+B.y);</span><br><span class="line">&#125;</span><br><span class="line">Point <span class="keyword">operator</span>-(<span class="type">const</span> Point&amp; A,<span class="type">const</span> Point&amp; B)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Point</span>(A.x-B.x,A.y-B.y);</span><br><span class="line">&#125;</span><br><span class="line">Point <span class="keyword">operator</span>*(<span class="type">const</span> Point&amp; A,<span class="type">int</span> p)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Point</span>(A.x*p,A.y*p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">bool</span> <span class="keyword">operator</span> == (<span class="type">const</span> Point&amp; a, <span class="type">const</span> Point &amp;b) &#123; <span class="keyword">return</span> a.x == b.x &amp;&amp; a.y == b.y; &#125;</span><br><span class="line"><span class="type">bool</span> <span class="keyword">operator</span>!= (<span class="type">const</span> Point&amp; a, <span class="type">const</span> Point &amp;b) &#123; <span class="keyword">return</span> !(a==b); &#125;</span><br><span class="line"><span class="type">bool</span> <span class="keyword">operator</span>&lt; (<span class="type">const</span> Point&amp; p1, <span class="type">const</span> Point&amp; p2) &#123; <span class="keyword">return</span> p1.x &lt; p2.x || (p1.x == p2.x &amp;&amp; p1.y &lt; p2.y); &#125;</span><br><span class="line"><span class="comment">//p绕r顺时针旋转90度</span></span><br><span class="line"><span class="comment">//用向量的角度思考</span></span><br><span class="line"><span class="function">Point <span class="title">rotate</span><span class="params">(<span class="type">const</span> Point&amp; p,<span class="type">const</span> Point&amp; r)</span></span>&#123;</span><br><span class="line">    Point pv = p - r;</span><br><span class="line">    Point ans = r + <span class="built_in">Point</span>(pv.y,-pv.x);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN = <span class="number">13</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Line</span>&#123;</span><br><span class="line">    Point start,end;</span><br><span class="line">    <span class="type">bool</span> vertical;</span><br><span class="line">    <span class="function">Line <span class="title">rotate</span><span class="params">(<span class="type">const</span> Point&amp; r)</span></span>&#123;</span><br><span class="line">        Line ret;</span><br><span class="line">        ret.start = ::<span class="built_in">rotate</span>(start,r);</span><br><span class="line">        ret.end = ::<span class="built_in">rotate</span>(end,r);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//保证起点在终点左边或者下边</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">normalize</span><span class="params">()</span></span>&#123;</span><br><span class="line">        vertical = (start.x == end.x);</span><br><span class="line">        <span class="keyword">if</span>(vertical)&#123;</span><br><span class="line">            <span class="keyword">if</span>(start.y &gt; end.y)<span class="built_in">swap</span>(start.y,end.y);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             <span class="keyword">if</span>(start.x &gt; end.x)<span class="built_in">swap</span>(start.x,end.x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> n,LineCnt;</span><br><span class="line">vector&lt;Line&gt; lines;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Point类小于号的重写是要有的，因为在map的使用中需要用到</li>
+<li>为什么要强调起点在终点的左边或者下边呢？因为一条边在打印中一个起点就可以了</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">lines.<span class="built_in">reserve</span>(<span class="number">1</span>&lt;&lt;MAXN);</span><br><span class="line">  <span class="keyword">while</span>(cin&gt;&gt;n&amp;&amp; n)&#123;</span><br><span class="line">       Line l;</span><br><span class="line">       l.end = <span class="built_in">Point</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">       l.vertical = <span class="literal">false</span>;</span><br><span class="line">       lines.<span class="built_in">clear</span>();</span><br><span class="line">       lines.<span class="built_in">push_back</span>(l);</span><br><span class="line">       <span class="type">int</span> maxY = l.start.y,minY = l.start.y,</span><br><span class="line">           minX = l.start.x,maxX = l.start.x;</span><br><span class="line">       Point s = l.start,rot = l.end;</span><br><span class="line">       _for(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">           <span class="type">int</span> sz = lines.<span class="built_in">size</span>();</span><br><span class="line">           _for(j,<span class="number">0</span>,sz)&#123;</span><br><span class="line">               Line nl = lines[j].<span class="built_in">rotate</span>(rot);</span><br><span class="line">               nl.<span class="built_in">normalize</span>();</span><br><span class="line">               lines.<span class="built_in">push_back</span>(nl);</span><br><span class="line">           &#125;</span><br><span class="line">           rot = <span class="built_in">rotate</span>(s,rot);</span><br><span class="line">       &#125;</span><br><span class="line">       map&lt;Point,<span class="type">char</span>&gt;pc;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; l : lines)&#123;</span><br><span class="line">           Point&amp; lp = l.start;</span><br><span class="line">           lp.x *= <span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span>(l.vertical)lp.x--;</span><br><span class="line">           minX = <span class="built_in">min</span>(lp.x,minX);</span><br><span class="line">           maxX = <span class="built_in">max</span>(lp.x,maxX);</span><br><span class="line">           minY = <span class="built_in">min</span>(lp.y,minY);</span><br><span class="line">           maxY = <span class="built_in">max</span>(lp.y,maxY);</span><br><span class="line">           pc[lp] = l.vertical ?<span class="string">&#x27;|&#x27;</span> : <span class="string">&#x27;_&#x27;</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       string buf;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> y = maxY; y &gt;= minY;y--)&#123;</span><br><span class="line">           buf.<span class="built_in">clear</span>();</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> x = minX; x &lt;= maxX;x++)&#123;</span><br><span class="line">               <span class="function">Point <span class="title">p</span><span class="params">(x,y)</span></span>;</span><br><span class="line">               <span class="keyword">if</span>(pc.<span class="built_in">count</span>(p)) buf += pc[p];</span><br><span class="line">               <span class="keyword">else</span> buf += <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">while</span>(*(buf.<span class="built_in">rbegin</span>()) == <span class="string">&#x27; &#x27;</span>)buf.<span class="built_in">erase</span>(buf.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">           output&lt;&lt;buf&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       output&lt;&lt;<span class="string">&quot;^\n&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>vector虽然是动态但是仍然可以预留空间</li>
+<li>旋转点最初是第一条line的终点，之后的旋转点就是第一条line的起点关于旋转点的旋转点</li>
+<li>在打印时只需要关注每条边的起点就可以了，因为每一条边都是相邻的</li>
+<li>所有边的起点的横坐标都要乘以2，如果是垂直就减去1，因为如果有两个水平的在一起是分不出来的，所以中间要多一个space</li>
+</ul>
+<h3 id="3-Crane"><a href="#3-Crane" class="headerlink" title="3.Crane"></a>3.Crane</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1611">Crane - UVA 1611 - Virtual Judge (vjudge.net)</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">swapSeg</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; rec,TIter first,TIter last)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> SZ = last -first;</span><br><span class="line">    SZ /= <span class="number">2</span>;</span><br><span class="line">    rec.<span class="built_in">push_back</span>(<span class="built_in">distance</span>(C.<span class="built_in">begin</span>(),first)+<span class="number">1</span>);</span><br><span class="line">    rec.<span class="built_in">push_back</span>(<span class="built_in">distance</span>(C.<span class="built_in">begin</span>(),last));</span><br><span class="line">    _for(i,<span class="number">0</span>,SZ)<span class="built_in">swap</span>(*(first+i),*(first+SZ+i));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; rec,<span class="type">int</span> k,TIter first,TIter last)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(first == last)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(*first == k)<span class="keyword">return</span> <span class="built_in">solve</span>(rec,k+<span class="number">1</span>,first+<span class="number">1</span>,last);</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    TIter kit = <span class="built_in">find</span>(first,last,k);</span><br><span class="line">    <span class="type">int</span> kp = kit - first,SZ = last - first;</span><br><span class="line">    <span class="keyword">if</span>(kp  &gt; SZ /<span class="number">2</span>)&#123;</span><br><span class="line">        TIter sLeft = first;</span><br><span class="line">        <span class="keyword">if</span>(kp % <span class="number">2</span> == <span class="number">0</span>)sLeft++;</span><br><span class="line">        <span class="built_in">swapSeg</span>(rec,sLeft,kit+<span class="number">1</span>);</span><br><span class="line">        ans++;</span><br><span class="line">        kit = <span class="built_in">find</span>(first,last,k);</span><br><span class="line">        kp = kit -first;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">swapSeg</span>(rec,first,first+(kp*<span class="number">2</span>));</span><br><span class="line">    ans++;</span><br><span class="line">    <span class="keyword">return</span> ans + (<span class="built_in">solve</span>(rec,k+<span class="number">1</span>,first+<span class="number">1</span>,last));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>swapSep用来将[first,end)中的前后两部分进行移动</li>
+<li>每一层的solve将某个数移动到对应的位置<ul>
+<li>如果区间为0，说明全部移动完毕</li>
+<li>如果要移动的数就在这个位置上，那么不需要移动</li>
+<li>在未排序的区间中，其区间大小为SZ，要移动的数前面的数有kp个<ul>
+<li>如果kp &gt; SZ &#x2F; 2,那么将kp+1个进行前后两半的置换，这样导致 kp &lt;&#x3D; SZ &#x2F;2</li>
+<li>如果kp &lt;&#x3D; SZ &#x2F; 2，那么将kp + kp 个进行前后置换就可以让数字i移动到第i个位置了</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Guess"><a href="#4-Guess" class="headerlink" title="4.Guess"></a>4.Guess</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1612">Guess - UVA 1612 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//123.45--&gt;12345</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">readF2i</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">8</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,buf);</span><br><span class="line">    <span class="type">int</span> a,b = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">sscanf</span>(buf,<span class="string">&quot;%d&quot;</span>,&amp;a);</span><br><span class="line">    <span class="type">char</span> *pp = <span class="built_in">strchr</span>(buf,<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(pp)<span class="built_in">sscanf</span>(++pp,<span class="string">&quot;%d&quot;</span>,&amp;b);</span><br><span class="line">    <span class="keyword">return</span> a*<span class="number">100</span>+b;</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">1</span>;cin&gt;&gt;n &amp;&amp; n;k++)&#123;</span><br><span class="line">        _for(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">            <span class="keyword">auto</span>&amp; p = PS[i];</span><br><span class="line">            p.<span class="built_in">clear</span>();p.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">            _for(j,<span class="number">0</span>,<span class="number">3</span>)p.<span class="built_in">push_back</span>(<span class="built_in">readF2i</span>());</span><br><span class="line">            p.<span class="built_in">push_back</span>(p[<span class="number">1</span>]+p[<span class="number">2</span>]),</span><br><span class="line">            p.<span class="built_in">push_back</span>(p[<span class="number">1</span>]+p[<span class="number">3</span>]),</span><br><span class="line">            p.<span class="built_in">push_back</span>(p[<span class="number">3</span>]+p[<span class="number">2</span>]),</span><br><span class="line">            p.<span class="built_in">push_back</span>(p[<span class="number">1</span>]+p[<span class="number">2</span>]+p[<span class="number">3</span>]);</span><br><span class="line">            <span class="built_in">sort</span>(<span class="built_in">begin</span>(p),<span class="built_in">end</span>(p),<span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        IDs.<span class="built_in">clear</span>();</span><br><span class="line">        _for(i,<span class="number">0</span>,n)IDs.<span class="built_in">push_back</span>(<span class="built_in">readint</span>()<span class="number">-1</span>);</span><br><span class="line">        <span class="type">int</span> ans = <span class="built_in">solve</span>();</span><br><span class="line">        <span class="keyword">if</span>(ans == <span class="number">-1</span>)output&lt;&lt;<span class="string">&quot;Case &quot;</span>&lt;&lt;k&lt;&lt;<span class="string">&quot;: No solution\n&quot;</span>;</span><br><span class="line">        <span class="keyword">else</span> output&lt;&lt;<span class="string">&quot;Case &quot;</span>&lt;&lt;k&lt;&lt;<span class="string">&quot;: &quot;</span>&lt;&lt;ans/<span class="number">100</span>&lt;&lt;<span class="string">&quot;.&quot;</span>&lt;&lt;<span class="built_in">setw</span>(<span class="number">2</span>)&lt;&lt;<span class="built_in">setfill</span>(<span class="string">&#x27;0&#x27;</span>)&lt;&lt;ans%<span class="number">100</span>&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将每个人所有可能的得分记录下来</li>
+<li>将每个得分按照整数类型输入</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> lastScore,lastId = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> id : IDs)&#123;</span><br><span class="line">        <span class="type">const</span> <span class="keyword">auto</span>&amp; p = PS[id];</span><br><span class="line">        <span class="keyword">if</span>(lastId == <span class="number">-1</span>)lastScore = p.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="type">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> s : p)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s &lt; lastScore || (s == lastScore &amp;&amp; id &gt; lastId))&#123;</span><br><span class="line">                    lastScore = s;</span><br><span class="line">                    found = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!found)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        lastId = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> lastScore;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果是第一名，那么他的得分就是他的最高分</li>
+<li>否则得分应该小于上一名，或者得分和上一个人相等但是id比上一个人大，如果没有这样的分数，说明构造失败</li>
+</ul>
+<h3 id="5-Highway"><a href="#5-Highway" class="headerlink" title="5.Highway"></a>5.Highway</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1615">Highway - UVA 1615 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span>&#123;</span><br><span class="line">    <span class="type">double</span> x,y;</span><br><span class="line">    <span class="built_in">Point</span>(<span class="type">double</span> x = <span class="number">0</span>,<span class="type">double</span> y = <span class="number">0</span>):<span class="built_in">x</span>(x),<span class="built_in">y</span>(y)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> Point Seg;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> eps = <span class="number">1e-4</span>;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">dcmp</span><span class="params">(<span class="type">double</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">fabs</span>(x) &lt; eps)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> x &lt; <span class="number">0</span> ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN = <span class="number">100010</span>;</span><br><span class="line"><span class="type">int</span> L,D,N;</span><br><span class="line">Point points[MAXN];</span><br><span class="line">vector&lt;Seg&gt; segs;</span><br><span class="line"><span class="function">Seg <span class="title">getInterSeg</span><span class="params">(<span class="type">const</span> Point&amp; p)</span></span>&#123;</span><br><span class="line">    <span class="comment">//弦长的一半</span></span><br><span class="line">    <span class="type">double</span> m = <span class="built_in">sqrt</span>(D*D-p.y*p.y),</span><br><span class="line">    x = p.x -m,</span><br><span class="line">    y = p.x + m;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">dcmp</span>(x) &lt; <span class="number">0</span>)x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">dcmp</span>(y-L) &gt; <span class="number">0</span>)y = L;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Seg</span>(x,y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">segcmp</span><span class="params">(<span class="type">const</span> Seg&amp; sl,<span class="type">const</span> Seg&amp; sr)</span></span>&#123;</span><br><span class="line">    <span class="type">double</span> yd = <span class="built_in">dcmp</span>(sl.y - sr.y);</span><br><span class="line">    <span class="keyword">return</span> yd &lt; <span class="number">0</span> || (yd == <span class="number">0</span> &amp;&amp; <span class="built_in">dcmp</span>(sl.x - sr.x) &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断大小时注意精度</li>
+<li>得到区间的左右端点时注意公路的限制</li>
+<li>segcmp用来比较（右端点小的在前面，如果右端点相同，那么左端点大的在前面）</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    segs.<span class="built_in">clear</span>();</span><br><span class="line">    _for(i,<span class="number">0</span>,N)segs.<span class="built_in">push_back</span>(<span class="built_in">getInterSeg</span>(points[i]));</span><br><span class="line">    <span class="built_in">sort</span>(segs.<span class="built_in">begin</span>(),segs.<span class="built_in">end</span>(),segcmp);</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">    <span class="type">double</span> p = segs[<span class="number">0</span>].y;</span><br><span class="line">    _for(i,<span class="number">1</span>,segs.<span class="built_in">size</span>())&#123;</span><br><span class="line">        <span class="type">const</span> Seg&amp; prev = segs[i<span class="number">-1</span>],cur = segs[i];</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dcmp</span>(cur.x-prev.x) &lt; <span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dcmp</span>(cur.x-p) &gt; <span class="number">0</span>)&#123;p = cur.y;ans++;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    output&lt;&lt;ans&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若当前区间左端点小于前一个区间的左端点，那么证明这两个区间有相交的地方</li>
+<li>如果当前区间的左端点大于p，说明当前区间和前面的区间没有相交的地方，点要重新计算</li>
+</ul>
+<h3 id="6-Caravan-Robbers"><a href="#6-Caravan-Robbers" class="headerlink" title="6.Caravan Robbers"></a>6.Caravan Robbers</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1616">Caravan Robbers - UVA 1616 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? <span class="built_in">gcd</span>(b,a%b): a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> eps = <span class="number">1e-7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dcmp</span><span class="params">(<span class="type">double</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">fabs</span>(x) &lt; eps)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> x &lt; <span class="number">0</span> ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dcmp</span><span class="params">(<span class="type">double</span> x,<span class="type">double</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dcmp</span>(x-y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Seg</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Seg&amp; s)<span class="type">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a &lt;= s.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">100004</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line">Seg segs[maxn];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>区间按照左端点的大小进行排列</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">tryLen</span><span class="params">(<span class="type">const</span> <span class="type">double</span> l)</span></span>&#123;</span><br><span class="line">    <span class="type">double</span> lb = <span class="number">0</span>;</span><br><span class="line">    _for(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">        <span class="type">const</span> Seg&amp; s = segs[i];</span><br><span class="line">        lb = <span class="built_in">max</span>((<span class="type">double</span>)s.a,lb)+l;</span><br><span class="line">        <span class="keyword">if</span>(lb &gt; s.b)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对于长度l进行尝试，如果每个gang新的左端点（max(lb,s.a)）和右端点所形成的新的区间是原来区间的子段，那就是合法的</li>
+</ul>
+<ol start="3">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(cin&gt;&gt;n)&#123;</span><br><span class="line">       _for(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">           Seg&amp; s = segs[i];</span><br><span class="line">           cin&gt;&gt;s.a&gt;&gt;s.b;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="built_in">sort</span>(segs,segs+n);</span><br><span class="line">       <span class="type">double</span> l = <span class="number">1</span>,r = (<span class="type">double</span>)<span class="number">1000000.0</span>/n,m;</span><br><span class="line">       _for(b,<span class="number">0</span>,<span class="number">50</span>)&#123;</span><br><span class="line">           m = (l+r)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span>(!<span class="built_in">tryLen</span>(m))r = m;</span><br><span class="line">           <span class="keyword">else</span> l = m;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="built_in">out</span>((l+r)/<span class="number">2</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用二分的方法去找一个合适的l，二分50次即可</li>
+</ul>
+<ol start="4">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">out</span><span class="params">(<span class="type">double</span> l)</span></span>&#123;</span><br><span class="line">    <span class="type">double</span> ip = <span class="built_in">floor</span>(l+eps);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">dcmp</span>(ip,l) == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="type">char</span> buf[<span class="number">50</span>];</span><br><span class="line">        <span class="built_in">sprintf</span>(buf,<span class="string">&quot;%0.lf/1\n&quot;</span>,ip);</span><br><span class="line">        <span class="function">string <span class="title">s</span><span class="params">(buf)</span></span>;</span><br><span class="line">        output&lt;&lt;s;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">1</span>,q = <span class="number">1</span>;</span><br><span class="line">    <span class="type">double</span> ans = <span class="number">1</span>;</span><br><span class="line">    _rep(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="type">int</span> cp = (<span class="type">int</span>)(<span class="built_in">floor</span>(l*(<span class="type">double</span>)i + <span class="number">0.5</span>));</span><br><span class="line">        <span class="type">double</span> x = (<span class="type">double</span>)cp/i;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">fabs</span>(x-l)&lt;<span class="built_in">fabs</span>(ans-l))q = i,p = cp,ans = x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> g = <span class="built_in">gcd</span>(p,q);</span><br><span class="line">    output&lt;&lt;(p/g)&lt;&lt;<span class="string">&quot;/&quot;</span>&lt;&lt;(q/g)&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将浮点数l划分分数的形式</li>
+<li>如果将l取整之后和原l相差不大，那么就用取整之后的l，这里分子保留1位小数能过是没有想到的</li>
+<li>否则，从1到n遍历每一个分母，得到最适合的分母与分子（差值最小），约分后输出即可</li>
+</ul>
+<h3 id="7-Weak-Key"><a href="#7-Weak-Key" class="headerlink" title="7.Weak Key"></a>7.Weak Key</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1618">Weak Key - UVA 1618 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> T = <span class="built_in">readint</span>();</span><br><span class="line">   <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">       k = <span class="built_in">readint</span>();</span><br><span class="line">       _for(i,<span class="number">0</span>,k)&#123;</span><br><span class="line">           cin&gt;&gt;N[i];</span><br><span class="line">           H[i].<span class="built_in">clear</span>(),L[i].<span class="built_in">clear</span>();</span><br><span class="line">       &#125;</span><br><span class="line">       _for(i,<span class="number">0</span>,k)&#123;</span><br><span class="line">           _for(j,i+<span class="number">1</span>,k)&#123;</span><br><span class="line">               <span class="keyword">if</span>(N[j] &gt; N[i])H[i].<span class="built_in">push_back</span>(j);</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span>(N[j] &lt; N[i])L[i].<span class="built_in">push_back</span>(j);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span>(<span class="built_in">solve</span>())output&lt;&lt;<span class="string">&quot;YES\n&quot;</span>;</span><br><span class="line">       <span class="keyword">else</span> output&lt;&lt;<span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建H[],L[],即序号在其后但其值更大或者更小</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> maxk = <span class="number">5004</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; H[maxk],L[maxk];</span><br><span class="line"><span class="type">int</span> k,N[maxk];</span><br><span class="line"><span class="comment">//p&lt;q&lt;r&lt;s</span></span><br><span class="line"><span class="comment">//Nq &gt; Ns &gt; Np &gt; Nr</span></span><br><span class="line"><span class="comment">//q N[q] &gt; N[p]  q in H[p]</span></span><br><span class="line"><span class="comment">//r N[r] &lt; N[p]  r in L[p] &amp;&amp; r &gt; q </span></span><br><span class="line"><span class="comment">//s N[s] &gt; N[p]  &amp;&amp; N[s] &lt; N[q],s in H[p] &amp;&amp; s in L[q] &amp;&amp; s &gt; r</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">find1</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> q : H[p])&#123;</span><br><span class="line">        <span class="comment">//r &gt; q</span></span><br><span class="line">        <span class="keyword">auto</span> rit = <span class="built_in">upper_bound</span>(L[p].<span class="built_in">begin</span>(),L[p].<span class="built_in">end</span>(),q);</span><br><span class="line">        <span class="keyword">if</span>(rit == L[p].<span class="built_in">end</span>())<span class="keyword">continue</span>;</span><br><span class="line">        <span class="type">int</span> r = *rit;</span><br><span class="line">        <span class="keyword">auto</span> sit = <span class="built_in">upper_bound</span>(H[p].<span class="built_in">begin</span>(),H[p].<span class="built_in">end</span>(),r);</span><br><span class="line">        <span class="keyword">while</span>(sit != H[p].<span class="built_in">end</span>())&#123;</span><br><span class="line">            <span class="type">int</span> s = *sit++;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">binary_search</span>(L[q].<span class="built_in">begin</span>(),L[q].<span class="built_in">end</span>(),s))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//p&lt;q&lt;r&lt;s</span></span><br><span class="line"><span class="comment">//Nq &lt; Ns &lt; Np &lt; Nr</span></span><br><span class="line"><span class="comment">//q q in L[p]</span></span><br><span class="line"><span class="comment">//r r in H[p] &amp;&amp; r &gt; q</span></span><br><span class="line"><span class="comment">//s s in L[p] &amp;&amp; s in H[q] &amp;&amp; s &gt; r</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">find2</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> q : L[p])&#123;</span><br><span class="line">        <span class="comment">//r &gt; q</span></span><br><span class="line">        <span class="keyword">auto</span> rit = <span class="built_in">upper_bound</span>(H[p].<span class="built_in">begin</span>(),H[p].<span class="built_in">end</span>(),q);</span><br><span class="line">        <span class="keyword">if</span>(rit == H[p].<span class="built_in">end</span>())<span class="keyword">continue</span>;</span><br><span class="line">        <span class="type">int</span> r = *rit;</span><br><span class="line">        <span class="keyword">auto</span> sit = <span class="built_in">upper_bound</span>(L[p].<span class="built_in">begin</span>(),L[p].<span class="built_in">end</span>(),r);</span><br><span class="line">        <span class="keyword">while</span>(sit != L[p].<span class="built_in">end</span>())&#123;</span><br><span class="line">            <span class="type">int</span> s = *sit++;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">binary_search</span>(H[q].<span class="built_in">begin</span>(),H[q].<span class="built_in">end</span>(),s))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    _for(i,<span class="number">0</span>,k)<span class="keyword">if</span>(<span class="built_in">find1</span>(i) || <span class="built_in">find2</span>(i))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>两种情况是类似的<ul>
+<li>按照p,q,r,s的顺序去找</li>
+<li>先去遍历每个p</li>
+<li>再去H[p]中遍历每一个q</li>
+<li>对于确定的p和q，r一定是确定的吗？但是在代码中r是确定的</li>
+<li>根据确定的p,q,r再去找s,这里的s就不是确定的</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-Smallest-Sub-Array"><a href="#8-Smallest-Sub-Array" class="headerlink" title="8.Smallest Sub-Array"></a>8.Smallest Sub-Array</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-11536">Smallest Sub-Array - UVA 11536 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">in_range</span><span class="params">(<span class="type">int</span> i)</span></span>&#123;<span class="keyword">return</span> i &gt;= <span class="number">1</span> &amp;&amp; i &lt;= K;&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">safe_insert</span><span class="params">(<span class="type">int</span> i,map&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&amp; s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">in_range</span>(i))&#123;s[i] = s[i] + <span class="number">1</span>;&#125;</span><br><span class="line">    <span class="keyword">return</span> s.<span class="built_in">size</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">safe_del</span><span class="params">(<span class="type">int</span> i,map&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&amp; s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!s.<span class="built_in">count</span>(i))<span class="keyword">return</span>;</span><br><span class="line">    s[i] = s[i]<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(s[i] &lt; <span class="number">1</span>)s.<span class="built_in">erase</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="type">int</span> ans = <span class="number">0</span>,L = <span class="number">0</span>,R = <span class="number">0</span>;</span><br><span class="line">   _for(i,<span class="number">0</span>,N)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">3</span>)x[i] = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> x[i] = (x[i<span class="number">-1</span>] + x[i<span class="number">-2</span>] + x[i<span class="number">-3</span>]) % M + <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; s;</span><br><span class="line">   <span class="built_in">safe_insert</span>(x[R],s);</span><br><span class="line">   <span class="keyword">while</span>(L &lt; N &amp;&amp; R &lt; N)&#123;</span><br><span class="line">        <span class="keyword">while</span>(s.<span class="built_in">size</span>() &lt; K)&#123;</span><br><span class="line">            <span class="built_in">safe_insert</span>(x[++R],s);</span><br><span class="line">            <span class="keyword">if</span>(R &gt;= N)<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s.<span class="built_in">size</span>() == K)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!s.<span class="built_in">count</span>(x[L]) || s[x[L]] &gt; <span class="number">1</span>)<span class="built_in">safe_del</span>(x[L++],s);</span><br><span class="line">            <span class="type">int</span> len = R-L+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(ans)ans = <span class="built_in">min</span>(ans,len);</span><br><span class="line">            <span class="keyword">else</span> ans = len;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">safe_del</span>(x[L],s);</span><br><span class="line">        L++;</span><br><span class="line">        R = <span class="built_in">max</span>(L,R);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>只要map中的size不是k，那么就一直向右扩展</li>
+<li>当size是k时，尽可能的去缩短长度（左端点向右），更新答案<ul>
+<li>为什么不让右端点向左呢？因为右端点是刚好满足size&#x3D;&#x3D;k</li>
+</ul>
+</li>
+<li>然后进行下一次的窗口构造</li>
+</ul>
+<h3 id="9-Feel-Good"><a href="#9-Feel-Good" class="headerlink" title="9.Feel Good"></a>9.Feel Good</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1619">Feel Good - UVA 1619 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n;</span><br><span class="line">   vector&lt;<span class="type">int</span>&gt; S;</span><br><span class="line">   <span class="type">bool</span> first = <span class="literal">true</span>;</span><br><span class="line">   <span class="keyword">while</span>(cin&gt;&gt;n)&#123;</span><br><span class="line">       <span class="keyword">if</span>(first)first = <span class="literal">false</span>;</span><br><span class="line">       <span class="keyword">else</span> output&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">       S.<span class="built_in">clear</span>();</span><br><span class="line">       Sum[<span class="number">0</span>] = A[<span class="number">0</span>] = A[n+<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">       <span class="type">bool</span> allZero = <span class="literal">true</span>;</span><br><span class="line">       _rep(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">           cin&gt;&gt;A[i];</span><br><span class="line">           <span class="keyword">if</span>(A[i])allZero = <span class="literal">false</span>;</span><br><span class="line">           Sum[i] = A[i] + Sum[i<span class="number">-1</span>];</span><br><span class="line">       &#125;</span><br><span class="line">       Sum[n+<span class="number">1</span>] = Sum[n];</span><br><span class="line">       <span class="keyword">if</span>(allZero)&#123;</span><br><span class="line">           output&lt;&lt;<span class="string">&quot;0\n1 1\n&quot;</span>;</span><br><span class="line">           <span class="keyword">continue</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">auto</span> popAll = [&amp;S](<span class="type">int</span> i)&#123;</span><br><span class="line">           <span class="keyword">while</span>(!S.<span class="built_in">empty</span>() &amp;&amp; A[S.<span class="built_in">back</span>()] &gt;= A[i])S.<span class="built_in">pop_back</span>();</span><br><span class="line">       &#125;;</span><br><span class="line">       _rep(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">           <span class="built_in">popAll</span>(i);</span><br><span class="line">           L[i] = S.<span class="built_in">empty</span>()?<span class="number">0</span>:S.<span class="built_in">back</span>();</span><br><span class="line">           S.<span class="built_in">push_back</span>(i);</span><br><span class="line">       &#125;</span><br><span class="line">       S.<span class="built_in">clear</span>();</span><br><span class="line">       _for(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">           <span class="type">int</span> j = n-i;<span class="built_in">popAll</span>(j);</span><br><span class="line">           R[j] = S.<span class="built_in">empty</span>()?n+<span class="number">1</span>:S.<span class="built_in">back</span>();</span><br><span class="line">           S.<span class="built_in">push_back</span>(j);</span><br><span class="line">       &#125;</span><br><span class="line">       LL ans = <span class="number">-1</span>,l = <span class="number">-1</span>, r = <span class="number">-1</span>;</span><br><span class="line">       _rep(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">           LL li = L[i],ri = R[i]<span class="number">-1</span>,t = A[i] * (Sum[ri]-Sum[li]);</span><br><span class="line">           li++;</span><br><span class="line">           <span class="type">bool</span> update = <span class="literal">false</span>;</span><br><span class="line">           <span class="keyword">if</span>(t &lt; ans)<span class="keyword">continue</span>;</span><br><span class="line">           <span class="keyword">if</span>(t &gt; ans)update = <span class="literal">true</span>;</span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span>(t == ans)&#123;</span><br><span class="line">               <span class="keyword">if</span>(r-l &gt; ri - li)update = <span class="literal">true</span>;</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span>(r-l == ri - li)update = li &lt; l;</span><br><span class="line">           &#125;</span><br><span class="line">           ans = <span class="built_in">max</span>(ans,t);</span><br><span class="line">           <span class="keyword">if</span>(update) l = li,r = ri;</span><br><span class="line">       &#125;</span><br><span class="line">       output&lt;&lt;ans&lt;&lt;<span class="string">&quot;\n&quot;</span>&lt;&lt;l&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;r&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用前缀和，便于计算连续区间的和</li>
+<li>注意特殊情况：序列全是0，打印区间1 1</li>
+<li>构建R[],L[],表示序列中比某一个元素小的元素的下标（左边最靠近的，右边最靠近的），有了这两个数组，一个元素的在哪个区间内是最小的元素就一目了然，而且这个区间还是已知最大的区间</li>
+<li>关于求R[],可以用栈，当压入一个元素时，就把大于等于该元素的所有栈内元素pop出去，这样最后剩下的就是严格比它小且最靠近它的元素</li>
+<li>最后求最大时，遍历每个元素（区间的最小值）即可，注意当值相同时，区间的取舍</li>
+</ul>
+<h3 id="10-Cricket-Field"><a href="#10-Cricket-Field" class="headerlink" title="10.Cricket Field"></a>10.Cricket Field</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1312">Cricket Field - UVA 1312 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">readint</span><span class="params">()</span></span>&#123;<span class="type">int</span> x;cin&gt;&gt;x;<span class="keyword">return</span> x;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN = <span class="number">104</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span>&#123;</span><br><span class="line">    <span class="type">int</span> x,y;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Point&amp; p)<span class="type">const</span> &#123;<span class="keyword">return</span> x &lt; p.x;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">istream&amp; <span class="keyword">operator</span>&gt;&gt;(istream&amp; is,Point&amp; p)&#123;</span><br><span class="line">    <span class="keyword">return</span> is&gt;&gt;p.x&gt;&gt;p.y;</span><br><span class="line">&#125;</span><br><span class="line">Point Ps[MAXN];</span><br><span class="line"><span class="type">int</span> N,W,H;</span><br><span class="line">set&lt;<span class="type">int</span>&gt; Ys;</span><br><span class="line"><span class="type">int</span> T = <span class="built_in">readint</span>();</span><br><span class="line">   Point ans;</span><br><span class="line">   _for(t,<span class="number">0</span>,T)&#123;</span><br><span class="line">        <span class="keyword">if</span>(t)output&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">        cin&gt;&gt;N&gt;&gt;W&gt;&gt;H;</span><br><span class="line">        Ys.<span class="built_in">clear</span>(),Ys.<span class="built_in">insert</span>(<span class="number">0</span>),Ys.<span class="built_in">insert</span>(H);</span><br><span class="line">        _for(i,<span class="number">0</span>,N)cin&gt;&gt;Ps[i],Ys.<span class="built_in">insert</span>(Ps[i].y);</span><br><span class="line">        <span class="type">int</span> len = <span class="built_in">solve</span>(ans);</span><br><span class="line">        output&lt;&lt;ans.x&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;ans.y&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;len&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将所有树的Y坐标去重记录下来，不要忘记0和H（上下边沿）</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">(Point&amp; ans)</span></span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(Ps,Ps+N);</span><br><span class="line">    <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;<span class="built_in">Y</span>(Ys.<span class="built_in">begin</span>(),Ys.<span class="built_in">end</span>());</span><br><span class="line">    _for(a,<span class="number">0</span>,Y.<span class="built_in">size</span>())</span><br><span class="line">        _for(b,a+<span class="number">1</span>,Y.<span class="built_in">size</span>())&#123;</span><br><span class="line">            <span class="type">int</span> miny = Y[a],maxy = Y[b],dy = maxy-miny;</span><br><span class="line">            <span class="keyword">if</span>(dy &lt;= len)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">            _for(i,<span class="number">0</span>,N)&#123;</span><br><span class="line">                <span class="type">const</span> Point&amp; p = Ps[i];</span><br><span class="line">                <span class="keyword">if</span>(p.y &lt;= miny || p.y &gt;= maxy)<span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(len &lt; <span class="built_in">min</span>(dy,p.x-left))&#123;</span><br><span class="line">                    len = <span class="built_in">min</span>(dy,p.x-left);</span><br><span class="line">                    ans.x = left;</span><br><span class="line">                    ans.y = miny;</span><br><span class="line">                &#125;</span><br><span class="line">                left = p.x;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(len &lt; <span class="built_in">min</span>(dy,W-left))&#123;</span><br><span class="line">                len = <span class="built_in">min</span>(dy,W-left);</span><br><span class="line">                ans.x = left;</span><br><span class="line">                ans.y = miny;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最大的边长必定边上是存在树的</li>
+<li>将所有树按横坐标从小到大进行排列</li>
+<li>对于每一种竖坐标的组合，遍历在其范围内的树，从而算出最大的正方形的边长</li>
+</ul>
+<h3 id="11-Faucet-Flow"><a href="#11-Faucet-Flow" class="headerlink" title="11.Faucet Flow"></a>11.Faucet Flow</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-10366">Faucet Flow - UVA 10366 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> leftx,rightx;</span><br><span class="line"><span class="keyword">while</span>(cin&gt;&gt;leftx&gt;&gt;rightx &amp;&amp; leftx &amp;&amp; rightx)&#123;</span><br><span class="line">	LH = RH = <span class="number">0</span>;</span><br><span class="line">        L = (-leftx)/<span class="number">2</span>,R = rightx/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = leftx;i &lt; <span class="number">0</span>;i += <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="type">int</span> xi = (-i)/<span class="number">2</span>;cin&gt;&gt;LHs[xi];</span><br><span class="line">            <span class="keyword">if</span>(LH &lt;= LHs[xi])LH = LHs[xi],LHi = xi;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= rightx;i += <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="type">int</span> xi = i /<span class="number">2</span> ;cin&gt;&gt;RHs[xi];</span><br><span class="line">            <span class="keyword">if</span>(RH &lt; RHs[xi])RH = RHs[xi],RHi = xi;</span><br><span class="line">        &#125;</span><br><span class="line">        output&lt;&lt;<span class="built_in">solve</span>()&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>L指左边下标的边界，R指右边下标的边界</li>
+<li>LH指距中间最近的同时也是左边最高的高度，LHi是LH的下标</li>
+<li>RH指距中间最近的同时也是右边最高的高度，RHi是RH的下标</li>
+<li>注意左右都是找靠中间的，也就是说左边更倾向于找后面的，右面更倾向于找左面的</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(LH == RH)&#123;</span><br><span class="line">        <span class="type">int</span> lt = <span class="number">0</span>,rt = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//每一个水族箱应该蓄多少水还是有讲究的</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = L,h = LHs[L];i &gt; LHi;i--)</span><br><span class="line">            lt += h,h = <span class="built_in">max</span>(h,LHs[i<span class="number">-1</span>]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = R,h = RHs[R];i &gt; RHi;i--)</span><br><span class="line">            rt += h,h = <span class="built_in">max</span>(h,RHs[i<span class="number">-1</span>]);</span><br><span class="line">        <span class="keyword">return</span> (LHi+RHi+<span class="number">1</span>)*LH*<span class="number">2</span>+<span class="built_in">min</span>(lt,rt)*<span class="number">2</span>*<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> T = <span class="built_in">min</span>(LH,RH),LTi = <span class="number">0</span>,RTi = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(LTi &lt; L &amp;&amp; LHs[LTi] &lt; T)LTi++;</span><br><span class="line">    <span class="keyword">while</span>(RTi &lt; R &amp;&amp; RHs[RTi] &lt; T)RTi++;</span><br><span class="line">    <span class="type">int</span> lt = <span class="number">0</span>,rt = <span class="number">0</span>,t;</span><br><span class="line">    <span class="keyword">if</span>(LH &lt; RH)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = L,h = LHs[L];i &gt; LHi;i--)</span><br><span class="line">            lt += h,h = <span class="built_in">max</span>(LHs[i<span class="number">-1</span>],h);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = RTi,h = T;RHs[i] &lt;= T;i++)</span><br><span class="line">            rt += h,h = <span class="built_in">max</span>(RHs[i+<span class="number">1</span>],h);</span><br><span class="line">        t = lt &gt; rt ?(rt+lt) : <span class="number">2</span>*lt;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">if</span>(LH &gt; RH)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = R,h = RHs[R];i &gt; RHi;i--)</span><br><span class="line">            rt += h,h = <span class="built_in">max</span>(RHs[i<span class="number">-1</span>],h);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = LTi,h = T;LHs[i] &lt;= T;i++)</span><br><span class="line">            lt += h,h = <span class="built_in">max</span>(LHs[i+<span class="number">1</span>],h);</span><br><span class="line">        t = rt &gt; lt ?(rt+lt) : <span class="number">2</span>*rt;</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">return</span> t*<span class="number">2</span> + (RTi+LTi+<span class="number">1</span>)*T*<span class="number">2</span>;                                       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果说左边最高和右边最高是相等的，那么它们两者之间一定是被灌满的，灌满之后再去考虑溢出的事情。<ul>
+<li>注意计算从边缘到最高处所需的水都是从低处向高处计算，而每一处高度的计算都是往高了算（同相邻处相比）</li>
+</ul>
+</li>
+<li>假如说一边高，比如左边比右边高，那么肯定是从右边溢出<ul>
+<li>还是要从左边中去找到和右边最高处相等的地方（这个地方是要比左边最高处更靠中间的），同理，它们之间（左右同高之间）的水是必须被灌满的</li>
+<li>之后的话再去计算右边到溢出还要多少水，以及左边再次达到这个高度需要多少水，这两者相比较,如果前者小，那么左边就不会再次达到这个高度，从而需要的水量就是2*rt，但如果后者小，那么需要的水量就是rt+lt，就是说左边当达到同高之后不会再升高了</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/10/18/23-10-18/" data-id="clo0xi4bn000168jd1oj4996p" data-title="23.10.18" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" rel="tag">高效算法设计</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/19/23-10-19/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          23.10.19
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/14/23-10-14/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">23.10.14</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85/">心情</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E7%9B%98%E6%B8%85%E7%90%86/" rel="tag">C盘清理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%9E%90/" rel="tag">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9A%B4%E5%8A%9B%E6%90%9C%E7%B4%A2/" rel="tag">暴力搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" rel="tag">算法练习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95/" rel="tag">高效算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" rel="tag">高效算法设计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C%E7%9B%98%E6%B8%85%E7%90%86/" style="font-size: 10px;">C盘清理</a> <a href="/tags/%E5%88%86%E6%9E%90/" style="font-size: 20px;">分析</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9A%B4%E5%8A%9B%E6%90%9C%E7%B4%A2/" style="font-size: 20px;">暴力搜索</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 20px;">模拟</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" style="font-size: 10px;">算法练习</a> <a href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95/" style="font-size: 10px;">高效算法</a> <a href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">高效算法设计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/10/22/23-10-22/">23.10.22</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/20/23-10-20/">23.10.20</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/19/23-10-19/">23.10.19</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/18/23-10-18/">23.10.18</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/14/23-10-14/">23.10.14</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

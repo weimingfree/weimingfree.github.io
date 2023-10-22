@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>23.10.19 | experience sharing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="高效算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23.10.19">
+<meta property="og:url" content="http://example.com/2023/10/19/23-10-19/index.html">
+<meta property="og:site_name" content="experience sharing">
+<meta property="og:description" content="高效算法">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-19T12:02:05.000Z">
+<meta property="article:modified_time" content="2023-10-22T03:46:48.587Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="高效算法">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="experience sharing" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">experience sharing</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">xu jian</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-23-10-19" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/19/23-10-19/" class="article-date">
+  <time class="dt-published" datetime="2023-10-19T12:02:05.000Z" itemprop="datePublished">2023-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      23.10.19
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="高效算法"><a href="#高效算法" class="headerlink" title="高效算法"></a>高效算法</h1><span id="more"></span>
+
+<h3 id="1-From-D-to-E-and-Back"><a href="#1-From-D-to-E-and-Back" class="headerlink" title="1.From D to E and Back"></a>1.From D to E and Back</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-11175">From D to E and Back - UVA 11175 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">int</span> m)</span></span>&#123;</span><br><span class="line">    _for(u,<span class="number">0</span>,m)&#123;</span><br><span class="line">        <span class="built_in">fill_n</span>(To,m,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : InvG[u])</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> x : G[v])To[x]++;</span><br><span class="line">        _for(v,<span class="number">0</span>,m)&#123;</span><br><span class="line">            <span class="keyword">if</span>(To[v] == <span class="number">0</span> || To[v] == InvG[u].<span class="built_in">size</span>())<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为了做什么呢？<ul>
+<li>去遍历每个点的来源，记录下这些来源所到达的终点所被经历过的次数</li>
+<li>如果这些终点被到达的次数相同，证明是正确的</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Finding-［B］lack-Circles"><a href="#2-Finding-［B］lack-Circles" class="headerlink" title="2.Finding ［B］lack Circles"></a>2.Finding ［B］lack Circles</h3><p>题目链接:<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-12559">Finding Black Circles - UVA 12559 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">_for(j,<span class="number">0</span>,h)cin&gt;&gt;lines[j];</span><br><span class="line">       _for(r,<span class="number">5</span>,<span class="number">51</span>)</span><br><span class="line">           _for(x,r,w-r+<span class="number">1</span>)</span><br><span class="line">               _for(y,r,h-r+<span class="number">1</span>)&#123;</span><br><span class="line">                   <span class="type">int</span> all = <span class="number">0</span>,per = <span class="number">0</span>;</span><br><span class="line">                   _for(i,<span class="number">0</span>,<span class="number">100</span>)&#123;</span><br><span class="line">                       <span class="type">double</span> th = <span class="built_in">rand</span>()/(RAND_MAX+<span class="number">1.0</span>)*<span class="number">2</span>*pi;</span><br><span class="line">                       <span class="type">int</span> cx = (<span class="type">int</span>)(x + r*<span class="built_in">cos</span>(th)+<span class="number">0.5</span>),</span><br><span class="line">                           cy = (<span class="type">int</span>)(y + r*<span class="built_in">sin</span>(th)+<span class="number">0.5</span>);</span><br><span class="line">                       <span class="keyword">if</span>(<span class="built_in">inRange</span>(cx,<span class="number">0</span>,w<span class="number">-1</span>) &amp;&amp; <span class="built_in">inRange</span>(cy,<span class="number">0</span>,h<span class="number">-1</span>) &amp;&amp; lines[cy][cx] == <span class="string">&#x27;1&#x27;</span>)per++;</span><br><span class="line">                       all++;</span><br><span class="line">                       <span class="keyword">if</span>(all &gt; <span class="number">10</span> &amp;&amp; <span class="number">2</span>*per &lt; all)<span class="keyword">break</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span>(per/(<span class="type">double</span>)all &gt; <span class="number">0.8</span>)ans.<span class="built_in">push_back</span>(<span class="built_in">circle</span>(r,x,y));</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用暴力 枚举每一个可能出现的r,x,y</li>
+<li>对于每一个可能，随机模拟100个角度，进行剪枝以及判断</li>
+</ul>
+<h3 id="2-Bits-Equalizer"><a href="#2-Bits-Equalizer" class="headerlink" title="2.Bits Equalizer"></a>2.Bits Equalizer</h3><p><a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-12545">Bits Equalizer - UVA 12545 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> N = S.<span class="built_in">size</span>(),s01 = <span class="number">0</span>,s10 = <span class="number">0</span>,q0 = <span class="number">0</span>,q1 = <span class="number">0</span>,ans = <span class="number">0</span>;</span><br><span class="line">    _for(i,<span class="number">0</span>,N)</span><br><span class="line">        <span class="keyword">if</span>(S[i] != T[i])&#123;</span><br><span class="line">            <span class="type">int</span> cs = S[i],ct = T[i];</span><br><span class="line">            <span class="keyword">if</span>(cs == <span class="string">&#x27;0&#x27;</span>)s01++;</span><br><span class="line">            <span class="keyword">if</span>(cs == <span class="string">&#x27;1&#x27;</span>)s10++;</span><br><span class="line">            <span class="keyword">if</span>(cs == <span class="string">&#x27;?&#x27;</span> &amp;&amp; ct == <span class="string">&#x27;0&#x27;</span>)q0++;</span><br><span class="line">            <span class="keyword">if</span>(cs == <span class="string">&#x27;?&#x27;</span> &amp;&amp; ct == <span class="string">&#x27;1&#x27;</span>)q1++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> x = <span class="built_in">min</span>(s01,s10);</span><br><span class="line">        ans = x + q0,s01 -= x,s10 -= x;</span><br><span class="line">        <span class="keyword">if</span>(s10 &gt; q1)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        ans += s10 + s01 + q1;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以交换的尽量交换，交换之后剩下的只有0-&gt;1或者是1-&gt;0</li>
+<li>因为1-&gt;0不是合法的操作，只能通过?-&gt;0然后才能够实现交换（但是需要转换为0的?不能够参与，只有需要转换为1的问号才能转换为0，从而与需要转换为0的1进行交换），所以当s10 &gt; q1时无法继续进行</li>
+<li>x是第一次交换的次数，再加上s01的次数，再加上由?-&gt;0的次数，再加上q1和1-&gt;0的次数（q1需要一部分或全部变成0，与1-&gt;0进行交换）</li>
+</ul>
+<h3 id="3-K-Graph-Oddity"><a href="#3-K-Graph-Oddity" class="headerlink" title="3.K-Graph Oddity"></a>3.K-Graph Oddity</h3><p><a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1613">K-Graph Oddity - UVA 1613 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a,b;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> t = <span class="number">0</span>;cin&gt;&gt;N&gt;&gt;M&amp;&amp;N&amp;&amp;M;t++)&#123;</span><br><span class="line">       <span class="keyword">if</span>(t)output&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">       _for(i,<span class="number">0</span>,N)G[i].<span class="built_in">clear</span>();</span><br><span class="line">       <span class="type">size_t</span> k = <span class="number">0</span>;</span><br><span class="line">       _for(i,<span class="number">0</span>,M)&#123;</span><br><span class="line">           cin&gt;&gt;a&gt;&gt;b;a--,b--;</span><br><span class="line">           G[a].<span class="built_in">push_back</span>(b),G[b].<span class="built_in">push_back</span>(a);</span><br><span class="line">           k = <span class="built_in">max</span>(k,G[a].<span class="built_in">size</span>()),k = <span class="built_in">max</span>(k,G[b].<span class="built_in">size</span>());</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span>(k % <span class="number">2</span> == <span class="number">0</span>)++k;</span><br><span class="line">       unordered_set&lt;<span class="type">int</span>&gt;colors;</span><br><span class="line">       _rep(i,<span class="number">1</span>,k)colors.<span class="built_in">insert</span>(i);</span><br><span class="line">       <span class="built_in">memset</span>(C,<span class="number">-1</span>,<span class="built_in">sizeof</span>(C));</span><br><span class="line">       queue&lt;<span class="type">int</span>&gt;Q;</span><br><span class="line">       Q.<span class="built_in">push</span>(<span class="number">0</span>),C[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(!Q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">           <span class="type">int</span> u = Q.<span class="built_in">front</span>();Q.<span class="built_in">pop</span>();</span><br><span class="line">           <span class="keyword">auto</span> cs = colors;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">auto</span> v : G[u])&#123;</span><br><span class="line">               <span class="keyword">if</span>(C[v] &gt; <span class="number">0</span>)cs.<span class="built_in">erase</span>(C[v]);</span><br><span class="line">               <span class="keyword">if</span>(C[v] &lt; <span class="number">0</span>)C[v] = <span class="number">0</span>,Q.<span class="built_in">push</span>(v);</span><br><span class="line">           &#125;</span><br><span class="line">           C[u]  = *(cs.<span class="built_in">begin</span>());</span><br><span class="line">       &#125;</span><br><span class="line">       output&lt;&lt;k&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">       _for(i,<span class="number">0</span>,N)output&lt;&lt;C[i]&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>采用BFS</li>
+<li>如果说当前点的邻接点已经染色，那么就把燃的颜色从cs中去除</li>
+<li>如果邻接点没有染色，压入队列等待染色</li>
+<li>将该点染色</li>
+</ul>
+<h3 id="4-Hell-on-the-Markets-UVA-1614-Virtual-Judge-vjudge-net"><a href="#4-Hell-on-the-Markets-UVA-1614-Virtual-Judge-vjudge-net" class="headerlink" title="4.Hell on the Markets - UVA 1614 - Virtual Judge (vjudge.net)"></a>4.<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1614">Hell on the Markets - UVA 1614 - Virtual Judge (vjudge.net)</a></h3><p>解析:</p>
+<ul>
+<li><p>将序列分为两组，两组的绝对值相同</p>
+</li>
+<li><p>当序列和S为奇数时，是不可能的</p>
+</li>
+<li><p>取法：按i从大到小的顺序访问ai，当前取出的元素之和为Q，如果2*(Q+ai) &lt;&#x3D; S,则取出，否则不取</p>
+<ul>
+<li>最靠左的没取的a_i:</li>
+</ul>
+<p>$$<br>Q + a_i &gt; \frac{S}{2}\Rightarrow i \geq a_i &gt; \frac{S}{2} - Q \Rightarrow Q + i-1 \geq \frac{S}{2}\<br>a_i \geq 1 \Rightarrow Q + \sum_{k&#x3D;1}^{i-1}{a_k}\geq Q + i + 1 \geq \frac{S}{2}<br>$$</p>
+<ul>
+<li><p>而且又存在:<br>$$<br>Q + \sum_{k &#x3D; 1}^{i-1}{a_k} \leq \frac{S}{2}<br>$$</p>
+</li>
+<li><p>所以存在：<br>$$<br>Q + \sum_{k&#x3D;1}^{i-1}{a_k} &#x3D; \frac{S}{2}<br>$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​	所以这种取法是正确的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(cin&gt;&gt;N&amp;&amp;N)&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> S = <span class="number">0</span>,T = <span class="number">0</span>;</span><br><span class="line">        _for(i,<span class="number">0</span>,N)cin&gt;&gt;A[i],S += A[i];</span><br><span class="line">        <span class="keyword">if</span>(S % <span class="number">2</span> == <span class="number">1</span>)&#123;</span><br><span class="line">            output&lt;&lt;<span class="string">&quot;No\n&quot;</span>;<span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        output&lt;&lt;<span class="string">&quot;Yes\n&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = N<span class="number">-1</span>;i &gt;= <span class="number">0</span>;i--)&#123;</span><br><span class="line">            F[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">2</span>*(T+A[i]) &lt;= S)F[i] = <span class="number">-1</span>,T += A[i];</span><br><span class="line">        &#125;</span><br><span class="line">        _for(i,<span class="number">0</span>,N)&#123;</span><br><span class="line">            output&lt;&lt;F[i];</span><br><span class="line">            string s = (i==N<span class="number">-1</span>)?<span class="string">&quot;\n&quot;</span>:<span class="string">&quot; &quot;</span>;</span><br><span class="line">            output&lt;&lt;s;</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1153">Keep the Customer Satisfied - UVA 1153 - Virtual Judge (vjudge.net)</a></p>
+<p>解析:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> T = <span class="built_in">readint</span>();;</span><br><span class="line">  _for(t,<span class="number">0</span>,T)&#123;</span><br><span class="line">       <span class="keyword">if</span>(t)output&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">       cin&gt;&gt;N;</span><br><span class="line">       _for(i,<span class="number">0</span>,N)cin&gt;&gt;os[i].q&gt;&gt;os[i].d;</span><br><span class="line">       <span class="built_in">sort</span>(os,os+N);</span><br><span class="line">       priority_queue&lt;<span class="type">int</span>&gt;Q;</span><br><span class="line">       <span class="type">int</span> due = <span class="number">0</span>;</span><br><span class="line">       _for(i,<span class="number">0</span>,N)&#123;</span><br><span class="line">           <span class="type">const</span> <span class="keyword">auto</span>&amp; o = os[i];</span><br><span class="line">           <span class="keyword">if</span>(due + o.q &lt;= o.d)due += o.q,Q.<span class="built_in">push</span>(o.q);</span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span>(!Q.<span class="built_in">empty</span>() &amp;&amp; Q.<span class="built_in">top</span>()&gt;o.q)&#123;</span><br><span class="line">               due = due - Q.<span class="built_in">top</span>() + o.q;</span><br><span class="line">               Q.<span class="built_in">pop</span>();</span><br><span class="line">               Q.<span class="built_in">push</span>(o.q);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       output&lt;&lt;Q.<span class="built_in">size</span>()&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>按照订单的截止时间进行排序</li>
+<li>在队列中按照订单所占用时间进行排序</li>
+<li>每进入一个新的订单，如果不超时，入队列；否则将队列中占用时间比新订单大的一个pop出去，将新订单入队列</li>
+</ul>
+<h3 id="6-Jumping-Around-UVA-1621-Virtual-Judge-vjudge-net"><a href="#6-Jumping-Around-UVA-1621-Virtual-Judge-vjudge-net" class="headerlink" title="6.Jumping Around - UVA 1621 - Virtual Judge (vjudge.net)"></a>6.<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1621">Jumping Around - UVA 1621 - Virtual Judge (vjudge.net)</a></h3><p>解析:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">move</span><span class="params">(<span class="type">int</span> step)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> ci = <span class="built_in">abs</span>(step);</span><br><span class="line">    cur += step;</span><br><span class="line">    output&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;cur;</span><br><span class="line">    A[ci]--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">move</span><span class="params">(<span class="type">int</span> step,<span class="type">int</span> cnt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i &lt; cnt;i++)<span class="built_in">move</span>(step);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将移动具体化</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    output&lt;&lt;<span class="string">&quot;0&quot;</span>,cur = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> c3 = A[<span class="number">3</span>] /<span class="number">3</span>,cm3 = A[<span class="number">3</span>] % <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span>(cm3 == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">3</span>,c3),<span class="built_in">move</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">-3</span>,c3),<span class="built_in">move</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">3</span>,c3);</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="keyword">if</span>(cm3 == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">3</span>,c3+<span class="number">1</span>),<span class="built_in">move</span>(<span class="number">-2</span>);</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">-3</span>,c3),<span class="built_in">move</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">3</span>,c3),<span class="built_in">move</span>(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cm3 == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">3</span>,c3+<span class="number">1</span>),<span class="built_in">move</span>(<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">-3</span>,c3),<span class="built_in">move</span>(<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">3</span>,c3+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">move</span>(<span class="number">1</span>,A[<span class="number">1</span>]<span class="number">-1</span>);</span><br><span class="line">    <span class="type">int</span> b2 = A[<span class="number">2</span>] /<span class="number">2</span> ,bm2 = A[<span class="number">2</span>] % <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(bm2 == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">2</span>,b2),<span class="built_in">move</span>(<span class="number">1</span>),<span class="built_in">move</span>(<span class="number">-2</span>,b2);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">move</span>(<span class="number">2</span>,b2+<span class="number">1</span>),<span class="built_in">move</span>(<span class="number">-1</span>),<span class="built_in">move</span>(<span class="number">-2</span>,b2);</span><br><span class="line">    &#125;</span><br><span class="line">    output&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>方法是先把步数为3的移动完，再走步数为1的，最后在走步数为2的</li>
+<li>这种方法就是在一个范围内来回走，以1个type为主，辅以其他type，将这个范围内的星球走完</li>
+</ul>
+<p>7.<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-11925">Generating Permutations - UVA 11925 - Virtual Judge (vjudge.net)</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">string ans;</span><br><span class="line">   deque&lt;<span class="type">int</span>&gt;A,T;</span><br><span class="line">   <span class="type">int</span> N,L[<span class="number">300</span>+<span class="number">2</span>];</span><br><span class="line">   <span class="keyword">while</span>(cin&gt;&gt;N&amp;&amp; N)&#123;</span><br><span class="line">        ans.<span class="built_in">clear</span>(),A.<span class="built_in">resize</span>(N,<span class="number">0</span>),T.<span class="built_in">resize</span>(N,<span class="number">0</span>);</span><br><span class="line">        _rep(i,<span class="number">1</span>,N)A[i<span class="number">-1</span>] = i,cin&gt;&gt;T[i<span class="number">-1</span>],L[T[i<span class="number">-1</span>]] = i;</span><br><span class="line">        <span class="keyword">while</span>(A != T)&#123;</span><br><span class="line">            <span class="type">int</span> a0 = A[<span class="number">0</span>],a1 = A[<span class="number">1</span>],l0 = L[a0],l1 = L[a1];</span><br><span class="line">            <span class="keyword">if</span>(l0 &lt;l1 || (l0 == N &amp;&amp; l1 == <span class="number">1</span>))&#123;</span><br><span class="line">                ans += <span class="string">&#x27;2&#x27;</span>,A.<span class="built_in">push_back</span>(A.<span class="built_in">front</span>()),A.<span class="built_in">pop_front</span>();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                ans += <span class="string">&#x27;1&#x27;</span>,<span class="built_in">swap</span>(A[<span class="number">0</span>],A[<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        output&lt;&lt;ans&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不好理解</li>
+<li>如果A内的序和T内的序不同，那么就交换，使其相同</li>
+<li>序相同，或者序相同但是一个在头一个在尾，那么就让第一个上最后面去</li>
+<li>如此往复，最后就能让A成为T</li>
+<li>原理是什么呢？</li>
+</ul>
+<h3 id="8-Meeting-with-Aliens-UVA-10570-Virtual-Judge-vjudge-net"><a href="#8-Meeting-with-Aliens-UVA-10570-Virtual-Judge-vjudge-net" class="headerlink" title="8.Meeting with Aliens - UVA 10570 - Virtual Judge (vjudge.net)"></a>8.<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-10570">Meeting with Aliens - UVA 10570 - Virtual Judge (vjudge.net)</a></h3><ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">copy</span><span class="params">(<span class="type">int</span> st,<span class="type">int</span> step)</span></span>&#123;</span><br><span class="line">    _for(i,<span class="number">0</span>,N)&#123;</span><br><span class="line">        <span class="type">int</span> a = (OC[i] = O[(st+step*i+N)%N]);</span><br><span class="line">        Pos[a] = i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">while</span>(cin&gt;&gt;N &amp;&amp; N)&#123;</span><br><span class="line">        _for(i,<span class="number">0</span>,N)cin&gt;&gt;O[i],O[i]--;</span><br><span class="line">        <span class="type">int</span> ans = MAXN;</span><br><span class="line">        _for(i,<span class="number">0</span>,N)&#123;</span><br><span class="line">            <span class="built_in">copy</span>(i,<span class="number">1</span>);</span><br><span class="line">            ans = <span class="built_in">min</span>(ans,<span class="built_in">solve</span>());</span><br><span class="line">            <span class="built_in">copy</span>(i,<span class="number">-1</span>);</span><br><span class="line">            ans = <span class="built_in">min</span>(ans,<span class="built_in">solve</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        output&lt;&lt;ans&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将一个序列以任意一个位置为开头，进行逆时针或者顺时针进行排列，从而寻找答案</li>
+<li>OC记录排列后每个位置的值,Pos记录每个值的位置</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    _for(i,<span class="number">0</span>,N)&#123;</span><br><span class="line">        <span class="type">int</span> p = Pos[i];</span><br><span class="line">        <span class="keyword">if</span>(p == i)<span class="keyword">continue</span>;</span><br><span class="line">        Pos[OC[i]] = p,Pos[i] = i;</span><br><span class="line">        <span class="built_in">swap</span>(OC[i],OC[p]),ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果当前位置的值和位置相符合，就不操作</li>
+<li>否则，就让应该在这个位置的数和实际在这个位置的数进行交换</li>
+</ul>
+<h3 id="9-Laptop-UVA-1617-Virtual-Judge-vjudge-net"><a href="#9-Laptop-UVA-1617-Virtual-Judge-vjudge-net" class="headerlink" title="9.Laptop - UVA 1617 - Virtual Judge (vjudge.net)"></a>9.<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-1617">Laptop - UVA 1617 - Virtual Judge (vjudge.net)</a></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>,p = <span class="number">-1</span>;</span><br><span class="line">    _for(i,<span class="number">0</span>,N)&#123;</span><br><span class="line">        <span class="type">const</span> <span class="keyword">auto</span>&amp; s= segs[i];</span><br><span class="line">        <span class="keyword">if</span>(s.r == p)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(s.l &gt; p)ans++,p = s.r;</span><br><span class="line">        <span class="keyword">else</span> ++p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将i个长度为1的单位能够放置到区间[L_i,R_i]中</li>
+<li>怎么放呢？首先放置的顺序是按照右区间小的在前，其次是左区间小的的在前</li>
+<li>如果这次来的和上次来的右区间相同，那么就把这次来的单位放在区间的最右边，上一个单位就会被向左挤</li>
+<li>如果这次来的和上次相比，区间有重合，那么就放置在上次右区间的后面，尽量挤在一起，同时右区间要更新</li>
+<li>如果这次来的和上次相比，区间没有重合，那么肯定挤不一起，重新放一个区间，将这个单位放在右区间的位置</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/10/19/23-10-19/" data-id="clo0xi4bs000568jd015ifjjw" data-title="23.10.19" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95/" rel="tag">高效算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/20/23-10-20/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          23.10.20
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/18/23-10-18/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">23.10.18</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85/">心情</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E7%9B%98%E6%B8%85%E7%90%86/" rel="tag">C盘清理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%9E%90/" rel="tag">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9A%B4%E5%8A%9B%E6%90%9C%E7%B4%A2/" rel="tag">暴力搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" rel="tag">算法练习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95/" rel="tag">高效算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" rel="tag">高效算法设计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C%E7%9B%98%E6%B8%85%E7%90%86/" style="font-size: 10px;">C盘清理</a> <a href="/tags/%E5%88%86%E6%9E%90/" style="font-size: 20px;">分析</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9A%B4%E5%8A%9B%E6%90%9C%E7%B4%A2/" style="font-size: 20px;">暴力搜索</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 20px;">模拟</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" style="font-size: 10px;">算法练习</a> <a href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95/" style="font-size: 10px;">高效算法</a> <a href="/tags/%E9%AB%98%E6%95%88%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">高效算法设计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/10/22/23-10-22/">23.10.22</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/20/23-10-20/">23.10.20</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/19/23-10-19/">23.10.19</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/18/23-10-18/">23.10.18</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/14/23-10-14/">23.10.14</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
